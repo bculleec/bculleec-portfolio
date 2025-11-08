@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vector Embeddings & Retrieval</title>
+  <style>
+    :root {
+        color-scheme: dark;
+        --bg: #121212;
+        --text: #eaeaea;
+        --font: 'Inter', system-ui, -apple-system, sans-serif;
+        --accent: #1b1b1d;
+    }
+    body { font-family: var(--font); margin: 40px; background: var(--bg); color: var(--text); }
+    input, button { padding: 10px; font-size: 16px; max-width: 100%;margin-bottom:10px;}
+    #results { margin-top: 20px; white-space: pre-wrap; }
+    .chunk { background: var(--accent); border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 6px; }
+    .description { background-color: var(--accent); padding: 20px; border-radius: 6px;margin-bottom: 25px; line-height: 1.6; max-width: 700px; }
+    a { color: #86b8ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h2>Vector Embeddings & Retrieval Demo (Alice In Wonderland)</h2>
+
+  <div class="description">
+    This interactive demo shows how <b>vector embeddings</b> can be used to search text semantically rather than by exact keywords.
+    This lies at the heart of how memory works in modern AI applications!
+    <br>
+    When you type a query below, the system converts your text into a numerical vector, compares it against precomputed embeddings
+    of <a href="/alice-in-wonderland.txt" target="_blank">Alice's Adventures in Wonderland</a>, and retrieves the most similar passages.
+    <br><br>
+    Try searching concepts like “rabbit hole”, “tea party”, or “Queen of Hearts” to see how semantically close passages are found.
+  </div>
+
+  <input id="query" type="text" placeholder="Search Alice..." size="50" />
+  <button id="searchBtn">Search</button>
+  <div id="results"></div>
+
+  <script>
+    const btn = document.getElementById('searchBtn');
+    const input = document.getElementById('query');
+    const resultsDiv = document.getElementById('results');
+
+    input.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            btn.click();
+        }
+    });
+
+    btn.addEventListener('click', async () => {
+      const q = input.value.trim();
+      if (!q) return;
+      resultsDiv.textContent = 'Searching...';
+
+      try {
+        const res = await fetch('/query', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ q })
+        });
+
+        const data = await res.json();
+        if (!Array.isArray(data.results)) {
+          resultsDiv.textContent = 'No results.';
+          return;
+        }
+
+        resultsDiv.innerHTML = data.results
+          .map((chunk, i) => `<div class="chunk"><b>${i + 1}.</b> ${chunk.text}</div>`)
+          .join('');
+      } catch (err) {
+        resultsDiv.textContent = 'Error fetching results.';
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
