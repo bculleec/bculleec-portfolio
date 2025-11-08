@@ -3,79 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector Embeddings & Retrieval</title>
+  <title>Bhav Culleechurn | Portfolio</title>
   <style>
     :root {
-        color-scheme: dark;
-        --bg: #121212;
-        --text: #eaeaea;
-        --font: 'Inter', system-ui, -apple-system, sans-serif;
-        --accent: #1b1b1d;
+      color-scheme: dark;
+      --bg: #0f0f0f;
+      --text: #eaeaea;
+      --accent: #1e1e1e;
+      --hover: #b0b0b0;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    body { font-family: var(--font); margin: 40px; background: var(--bg); color: var(--text); }
-    input, button { padding: 10px; font-size: 16px; max-width: 100%;margin-bottom:10px;}
-    #results { margin-top: 20px; white-space: pre-wrap; }
-    .chunk { background: var(--accent); border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 6px; }
-    .description { background-color: var(--accent); padding: 20px; border-radius: 6px;margin-bottom: 25px; line-height: 1.6; max-width: 700px; }
-    a { color: #86b8ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+    }
+    header a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    header a:hover {
+      color: var(--hover);
+    }
+    main {
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-bottom: 20px;
+      background-position: center;
+      background-size: cover;
+    }
+    .tagline {
+      font-size: 1.3rem;
+      color: var(--hover);
+      margin-bottom: 60px;
+    }
+    .sections {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .section {
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    .section h3 {
+      margin-top: 0;
+      color: var(--hover);
+    }
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .section li {
+      margin-bottom: 10px;
+    }
+    .section a {
+      color: #3758dd;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .section a:hover {
+      color: var(--hover);
+    }
+    footer {
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
   </style>
 </head>
 <body>
-  <h2>Vector Embeddings & Retrieval Demo (Alice In Wonderland)</h2>
+  <header>
+    <a href="/technical-resume.pdf" target="_blank">Resume</a>
+    <a href="https://github.com/bculleec" target="_blank">GitHub</a>
+    <a href="https://bsky.app/profile/bculleec.bsky.social" target="_blank">Bluesky</a>
+    <a href="mailto:bculleec@gmail.com">Contact</a>
+  </header>
 
-  <div class="description">
-    This interactive demo shows how <b>vector embeddings</b> can be used to search text semantically rather than by exact keywords.
-    This lies at the heart of how memory works in modern AI applications!
-    <br>
-    When you type a query below, the system converts your text into a numerical vector, compares it against precomputed embeddings
-    of <a href="/alice-in-wonderland.txt" target="_blank">Alice's Adventures in Wonderland</a>, and retrieves the most similar passages.
-    <br><br>
-    Try searching concepts like “rabbit hole”, “tea party”, or “Queen of Hearts” to see how semantically close passages are found.
-  </div>
+  <main>
+    <div class="avatar" style="background-image: url('145722460.jfif');"></div>
+    <div class="tagline">You imagine, I build</div>
 
-  <input id="query" type="text" placeholder="Search Alice..." size="50" />
-  <button id="searchBtn">Search</button>
-  <div id="results"></div>
+    <div class="sections">
+      <div class="section">
+        <h3>🗺️ Geospatial</h3>
+        <ul>
+          <li><a href="https://bculleec.github.io/threejs-sketches/threejs-dynamic-tile-loading/" target="_blank">Dynamic Tiles Loading and Sphere Projection</a></li>
+        </ul>
+      </div>
 
-  <script>
-    const btn = document.getElementById('searchBtn');
-    const input = document.getElementById('query');
-    const resultsDiv = document.getElementById('results');
+      <div class="section">
+        <h3>🎴 3D Graphics</h3>
+        <ul>
+          <li><a href="https://github.com/bculleec/threejs-sketches?tab=readme-ov-file" target="_blank">threejs-sketches</a></li>
+        </ul>
+      </div>
 
-    input.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            btn.click();
-        }
-    });
+      <div class="section">
+        <h3>🤖 Artificial Intelligence</h3>
+        <ul>
+          <li><a href="/vector-embeddings-demo.html" target="_blank">Text Vector Embeddings & Retrieval in Node.js</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
 
-    btn.addEventListener('click', async () => {
-      const q = input.value.trim();
-      if (!q) return;
-      resultsDiv.textContent = 'Searching...';
-
-      try {
-        const res = await fetch('/query', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ q })
-        });
-
-        const data = await res.json();
-        if (!Array.isArray(data.results)) {
-          resultsDiv.textContent = 'No results.';
-          return;
-        }
-
-        resultsDiv.innerHTML = data.results
-          .map((chunk, i) => `<div class="chunk"><b>${i + 1}.</b> ${chunk.text}</div>`)
-          .join('');
-      } catch (err) {
-        resultsDiv.textContent = 'Error fetching results.';
-        console.error(err);
-      }
-    });
-  </script>
+  <footer>
+    © 2025 Bhav Culleechurn
+  </footer>
 </body>
 </html>
