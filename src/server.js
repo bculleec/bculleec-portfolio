@@ -54,18 +54,10 @@ app.register(cors);
 app.register(fastifyStatic, {
     root: path.join(__dirname, '../public')
 });
-
-if (process.env.NODE_ENV !== 'production') {
-    app.register(fastifyMysql, {
-        promise: true,
-        connectionString: process.env.MYSQL_CONNECTION_STRING,
-    });
-} else {
-    app.register(fastifyMysql, {
-        promise: true,
-        url: process.env.MYSQL_CONNECTION_STRING,
-    });
-}
+app.register(fastifyMysql, {
+    promise: true,
+    connectionString: process.env.MYSQL_CONNECTION_STRING
+});
 
 app.register(fastifyView, {
     root: path.join(__dirname, '../views'),
