@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Bhav Culleechurn</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f0f0f;
+      --text: #eaeaea;
+      --accent: #1e1e1e;
+      --hover: #b0b0b0;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+    }
+    header a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    header a:hover {
+      color: var(--hover);
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 800px;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--hover);
+    }
+    .post {
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: background 0.2s;
+    }
+    .post:hover {
+      background: #171717;
+    }
+    .post a {
+      color: #3758dd;
+      text-decoration: none;
+    }
+    .post a:hover {
+      color: var(--hover);
+    }
+    .meta {
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">Home</a>
+  </header>
+
+  <main>
+    <h1>Blog</h1>
+    <div id="posts">Loading...</div>
+  </main>
+
+  <footer>© 2025 Bhav Culleechurn</footer>
+
+  <script>
+    async function loadPosts() {
+      const container = document.getElementById('posts');
+      try {
+        const res = await fetch('/blogapi');
+        const posts = await res.json();
+        if (!Array.isArray(posts) || !posts.length) {
+          container.textContent = 'No posts yet.';
+          return;
+        }
+        container.innerHTML = posts.map(p => `
+          <div class="post">
+            <a href="/blog/${p.id}.html"><h2>${p.title}</h2></a>
+            <div class="meta">${p.category || 'Uncategorized'} • ${new Date(p.last_updated).toLocaleDateString()}</div>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.textContent = 'Error loading posts.';
+      }
+    }
+    loadPosts();
+  </script>
+</body>
+</html>

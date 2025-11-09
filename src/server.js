@@ -22,19 +22,49 @@ matrix.forEach(( m ) => {
     index.add(m);
 });
 
-import { embedString } from './VectorCreation.js';
+import { embedString } from './vector_demo/VectorCreation.js';
+
+// fastify
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import fastifyStatic from '@fastify/static';
+import fastifyMysql from '@fastify/mysql';
+import fastifyView from '@fastify/view';
+import ejs from 'ejs';
+
+// routes
+import { blogRoutes } from './blog/BlogRoutes.js';
+
+// other
 import path from 'node:path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
 const app = fastify({ logger: true });
+// const __dirname = path.join(import.meta.dirname, '..');
 
-const __dirname = import.meta.dirname;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+if (process.env.NODE_ENV !== 'production') { dotenv.config({ path: resolve(__dirname, '../.env') }); }
+
+
 app.register(cors);
 app.register(fastifyStatic, {
-    root: path.join(__dirname, 'public')
-})
+    root: path.join(__dirname, '../public')
+});
+app.register(fastifyMysql, {
+    promise: true,
+    connectionString: process.env.MYSQL_CONNECTION_STRING
+});
+
+app.register(fastifyView, {
+    root: path.join(__dirname, '../views'),
+    engine: { ejs: ejs }
+});
+
+app.register(blogRoutes);
 
 app.post('/query', async ( request, reply ) => {
     const q = request.body.q;

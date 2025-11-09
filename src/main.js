@@ -18,7 +18,7 @@ await saveChunks(textChunks, './data/chunks.json');
 // Now we have our chunks of 300 characters, each associated with an ID.
 // Next, we will want to embed and store these chunks as vectors.
 // This step can take a while to run depending on the chunk size you set earlier.
-import { embedChunks, saveVectors } from './VectorCreation.js';
+import { embedChunks, saveVectors } from './vector_demo/VectorCreation.js';
 const vectors = await embedChunks(textChunks);
 
 // Let's write that to a file since that took so long.
