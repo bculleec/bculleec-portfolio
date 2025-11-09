@@ -54,14 +54,16 @@ app.register(cors);
 app.register(fastifyStatic, {
     root: path.join(__dirname, '../public')
 });
+const u = new URL(process.env.DATABASE_CONNECTION_STRING);
 app.register(fastifyMysql, {
-    promise: true,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+  promise: true,
+  host: u.hostname,
+  port: Number(u.port || 3306),
+  user: decodeURIComponent(u.username),
+  password: decodeURIComponent(u.password),
+  database: u.pathname.slice(1),
 });
+
 
 app.register(fastifyView, {
     root: path.join(__dirname, '../views'),
