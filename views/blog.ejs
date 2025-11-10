@@ -101,7 +101,7 @@
         container.innerHTML = posts.map(p => `
           <div class="post">
             <a href="/blog/${p.id}"><h2>${p.title}</h2></a>
-            <div class="meta">${p.category || 'Uncategorized'} • ${new Date(p.last_updated).toLocaleDateString()}</div>
+            <div class="meta">${p.category || 'Uncategorized'} • ${new Date(p.created_at).toLocaleDateString()}</div>
           </div>
         `).join('');
       } catch (err) {
