@@ -41,6 +41,7 @@
     <input type="text" id="category" placeholder="Category" required />
     <textarea id="content" placeholder="Write your content..." rows="10" required></textarea>
     <input type="date" id="created_at">
+    <input type="text" id="write_token" placeholder="API Token" required />
     <button type="submit">Submit</button>
   </form>
 
@@ -57,7 +58,7 @@
       const category = document.getElementById('category').value.trim();
       const content = document.getElementById('content').value.trim();
       const createdAt = document.getElementById('created_at').value.trim();
-      const writeApiToken = '<%= apiToken %>';
+      const writeApiToken = document.getElementById('write_token').value.trim();;
 
       try {
         const res = await fetch('/blogapi/create', {
