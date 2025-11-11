@@ -5,7 +5,7 @@
 
 // First, we'll need to load the text data and split it into chunks.
 import { readFile } from 'fs/promises';
-import { chunkText, saveChunks } from './TextChunking.js';
+import { chunkText, saveChunks } from './vector_demo/TextChunking.js';
 
 const fileLocation = './data/alice-in-wonderland.txt';
 const fileText = await readFile(fileLocation, { encoding: 'utf-8' } );
