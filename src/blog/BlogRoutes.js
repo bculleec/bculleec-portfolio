@@ -2,7 +2,7 @@ async function blogRoutes(app, options) {
     app.get('/blogapi', async ( request, reply ) => {
         const client = await app.mysql.getConnection();
         const [rows, fields] = await client.query(
-            'SELECT id, title, category, content, created_at FROM blog_posts', [],
+            'SELECT id, title, category, content, created_at FROM blog_posts order by created_at desc', [],
         );
         client.release();
         return reply.send(rows);
