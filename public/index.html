@@ -5,109 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bhav Culleechurn | Portfolio</title>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0f0f0f;
-      --text: #eaeaea;
-      --accent: #1e1e1e;
-      --hover: #b0b0b0;
-      --font: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      gap: 20px;
-      padding: 20px 40px;
-      box-sizing: border-box;
-      font-size: 0.95rem;
-    }
-    header a {
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    header a:hover {
-      color: var(--hover);
-    }
-    main {
-      text-align: center;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      box-sizing: border-box;
-    }
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-bottom: 20px;
-      background-position: center;
-      background-size: cover;
-    }
-    .tagline {
-      font-size: 1.3rem;
-      color: var(--hover);
-      margin-bottom: 60px;
-    }
-    .sections {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 1000px;
-    }
-    .section {
-      background: var(--accent);
-      border-radius: 10px;
-      padding: 20px;
-      flex: 1 1 250px;
-      max-width: 300px;
-      box-sizing: border-box;
-      text-align: left;
-    }
-    .section h3 {
-      margin-top: 0;
-      color: var(--hover);
-    }
-    .section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .section li {
-      margin-bottom: 10px;
-    }
-    .section a {
-      color: #3758dd;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .section a:hover {
-      color: var(--hover);
-    }
-    footer {
-      padding: 20px;
-      font-size: 0.85rem;
-      color: #777;
-    }
-  </style>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
   <header>
@@ -119,8 +17,11 @@
   </header>
 
   <main>
-    <div class="avatar" style="background-image: url('145722460.jfif');"></div>
-    <div class="tagline">You imagine, I build</div>
+    <div class="hero-banner">
+      <div class="avatar" style="background-image: url('145722460.jfif');"></div>
+      <div class="tagline">You imagine, I build</div>
+      <div class="sub-tagline">Web Developer @ <a href="https://groundworkag.com" target="_blank" style="text-decoration: none;color: inherit;">GroundWork.</a></div>
+    </div>
 
     <div class="sections">
       <div class="section">
