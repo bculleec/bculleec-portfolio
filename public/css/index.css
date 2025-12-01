@@ -143,3 +143,56 @@ footer {
     font-size: 0.85rem;
     color: #777;
 }
+
+.highlights {
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px 0;
+  text-align: left;
+  padding: 0 0;
+  box-sizing: border-box;
+}
+
+.highlights h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.highlight-grid {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.highlight-card {
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1 1 300px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.highlight-card h3 {
+  margin: 0;
+  color: var(--hover);
+}
+
+.highlight-card p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.highlight-card a {
+  text-decoration: none;
+  margin-top: auto;
+  font-weight: bold;
+  color: #3758dd;
+  transition: color 0.2s;
+}
+.highlight-card a:hover {
+  color: var(--hover);
+}
