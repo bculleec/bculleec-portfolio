@@ -196,3 +196,13 @@ footer {
 .highlight-card a:hover {
   color: var(--hover);
 }
+
+.about-me-list li {
+font-size: 1.1rem;
+opacity: 0.85;
+margin-bottom: 12px;
+}
+
+.about-me-list li:last-child {
+margin-bottom: 0;
+}
